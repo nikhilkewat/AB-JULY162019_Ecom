@@ -29,6 +29,9 @@ app.use(function(req, res, next) {
 var login = require("./Routes/Login");
 app.use("/api",login);
 
+var address = require("./Routes/AddressDetails");
+app.use("/api",address);
+
 var server = app.listen(5002, function() {
  console.log("Server Started")  ;
 });
