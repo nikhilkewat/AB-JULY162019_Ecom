@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
-import reducer from './Admin/reducers/index';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware,compose } from "redux";
+import reduxThunk from "redux-thunk";
+import reducer from "./Admin/reducer/index";
 import './index.css';
 import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
@@ -12,6 +13,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+    reducer,
+    {},
+    composeEnhancers(applyMiddleware(reduxThunk))
+  );
+
+
+ReactDOM.render(<Provider store={store}><App /></Provider> , document.getElementById('root'));
 
 const store = createStore(
     reducer,

@@ -26,8 +26,11 @@ app.use(function(req, res, next) {
   next();
 });
 
-var login = require("./Routes/Login");
-app.use("/api",login);
+// var login = require("./Routes/Login");
+// app.use("/api",login);
+
+var category = require("./Routes/category");
+app.use("/api",category);
 
 var address = require("./Routes/AddressDetails");
 app.use("/api",address);

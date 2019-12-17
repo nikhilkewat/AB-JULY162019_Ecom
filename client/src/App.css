@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -35,4 +35,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.form-control{
+  height:38px;
+}
+.btn{
+  height:38px;
+}
+.div500px{
+  height:500px;
+  overflow: auto;
+}
+.transparent{
+  color:transparent;
+}
+.circle{
+  height: auto;
+  border-radius:25px;
+}
+.table th, .table td{
+padding: 0.2rem;
 }
