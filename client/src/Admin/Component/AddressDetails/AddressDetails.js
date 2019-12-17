@@ -60,9 +60,10 @@ class AddressDetails extends Component {
         })
     }
 
-    onSelectedIndexChanged(option){
+    onSelectedIndexChanged(option) {
+        //console.log(option);
         this.setState({
-            state : option.label
+            state: option.label
         })
     }
 
@@ -72,6 +73,7 @@ class AddressDetails extends Component {
     }
 
     editClickHandler(addDetails) {
+        //console.log(addDetails.state);
         this.setState({
             address: addDetails.address,
             state: addDetails.state,
@@ -98,7 +100,13 @@ class AddressDetails extends Component {
                             <Form>
                                 <Row>
                                     <Col md="3">
-                                        <FormGroup> Address
+                                        <FormGroup>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-username"
+                                            >
+                                                Address
+                                            </label>
                                             <Input
                                                 id="exampleFormControlInput1"
                                                 name="address"
@@ -111,7 +119,13 @@ class AddressDetails extends Component {
                                         </FormGroup>
                                     </Col>
                                     <Col md="3">
-                                        <FormGroup> State
+                                        <FormGroup>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-username"
+                                            >
+                                                State
+                                            </label>
                                             {/* <Input
                                                 id="exampleFormControlInput1"
                                                 name="state"
@@ -123,11 +137,18 @@ class AddressDetails extends Component {
                                             <Select
                                                 options={stateData}
                                                 onChange={this.onSelectedIndexChanged.bind(this)}
+                                                //value={this.state.state}
                                             />
                                         </FormGroup>
                                     </Col>
                                     <Col md="3">
-                                        <FormGroup> County
+                                        <FormGroup>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-username"
+                                            >
+                                                County
+                                            </label>
                                             <Input
                                                 id="exampleFormControlInput1"
                                                 name="county"
@@ -139,157 +160,157 @@ class AddressDetails extends Component {
                                         </FormGroup>
                                     </Col>
                                     <Col md="3">
-                                        <FormGroup> Zipcode
-                                            <Input
-                                                id="exampleFormControlInput1"
-                                                name="zipcode"
-                                                placeholder="Zipcode"
-                                                type="text"
-                                                value={this.state.zipcode}
-                                                onChange={this.userAddressChangeHandler.bind(this)}
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row>
-
-                                    <Col md="3">
-                                        {/* <FormGroup>
-                                            <Select
-                                                options={stateData}
-                                                onChange={this.onSelectedIndexChanged}
-                                            />
-                                        </FormGroup> */}
-                                    </Col>
-                                    <Col md="6">
                                         <FormGroup>
-                                            <Button color="danger" type="button" onClick={this.addressSaveHandler.bind(this)} > Add </Button>
-                                        </FormGroup>
-                                    </Col>
+                                            <label
+                                                className="form-control-label"
+                                                htmlFor="input-username"
+                                            >
+                                                Zipcode
+                                            </label>
+                                            <Input
+                                                    id="exampleFormControlInput1"
+                                                    name="zipcode"
+                                                    placeholder="Zipcode"
+                                                    type="text"
+                                                    value={this.state.zipcode}
+                                                    onChange={this.userAddressChangeHandler.bind(this)}
+                                                />
+                                            </FormGroup>
+                                        </Col>
                                 </Row>
+                                    <Row>
+
+                                        <Col md="3">
+                                        </Col>
+                                        <Col md="6">
+                                            <FormGroup>
+                                                <Button color="danger" type="button" onClick={this.addressSaveHandler.bind(this)} > Add </Button>
+                                            </FormGroup>
+                                        </Col>
+                                    </Row>
 
                             </Form>
-                            {/* <Header /> */}
-                            {/* Page content */}
-                            {/* <Container className="mt--7" fluid> */}
+                                {/* <Header /> */}
+                                {/* Page content */}
+                                {/* <Container className="mt--7" fluid> */}
 
-                            {/* Dark table */}
-                            <Row className="mt-4">
-                                <div className="col">
-                                    <Card className="bg-default shadow">
-                                        <CardHeader className="bg-transparent border-0">
-                                            <h3 className="text-white mb-0">Address Details Table</h3>
-                                        </CardHeader>
-                                        <Table
-                                            className="align-items-center table-dark"
-                                            responsive
-                                        >
-                                            <thead className="thead-dark">
-                                                <tr>
-                                                    <th scope="col">Address</th>
-                                                    <th scope="col">State</th>
-                                                    <th scope="col">County</th>
-                                                    <th scope="col">Zipcode </th>
-                                                    <th scope="col">Edit / Delete </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    this.props.addressDetailsList.data.map((addDetails, index) => {
-                                                        return (
-                                                            <tr key={index}>
-                                                                <td> {addDetails.address} </td>
-                                                                <td> {addDetails.state} </td>
-                                                                <td> {addDetails.county} </td>
-                                                                <td> {addDetails.zipcode} </td>
-                                                                <td>
-                                                                    <Button onClick={this.editClickHandler.bind(this, addDetails)} color="warning" size="sm" type="button">
-                                                                        Edit</Button>
-                                                                    <Button onClick={this.deleteAddressHandler.bind(this, addDetails.id)} color="success" size="sm" type="button">
-                                                                        Delete</Button>
-                                                                </td>
-                                                            </tr>
-                                                        )
-                                                    })
-                                                }
-                                            </tbody>
-                                        </Table>
-                                        <CardFooter className="py-4">
-                                            <nav aria-label="...">
-                                                <Pagination
-                                                    className="pagination justify-content-end mb-0"
-                                                    listClassName="justify-content-end mb-0"
-                                                >
-                                                    <PaginationItem className="disabled">
-                                                        <PaginationLink
-                                                            href="#pablo"
-                                                            onClick={e => e.preventDefault()}
-                                                            tabIndex="-1"
-                                                        >
-                                                            <i className="fas fa-angle-left" />
-                                                            <span className="sr-only">Previous</span>
-                                                        </PaginationLink>
-                                                    </PaginationItem>
-                                                    <PaginationItem className="active">
-                                                        <PaginationLink
-                                                            href="#pablo"
-                                                            onClick={e => e.preventDefault()}
-                                                        >
-                                                            1
+                                {/* Dark table */}
+                                <Row className="mt-4">
+                                    <div className="col">
+                                        <Card className="bg-default shadow">
+                                            <CardHeader className="bg-transparent border-0">
+                                                <h3 className="text-white mb-0">Address Details Table</h3>
+                                            </CardHeader>
+                                            <Table
+                                                className="align-items-center table-dark"
+                                                responsive
+                                            >
+                                                <thead className="thead-dark">
+                                                    <tr>
+                                                        <th scope="col">Address</th>
+                                                        <th scope="col">State</th>
+                                                        <th scope="col">County</th>
+                                                        <th scope="col">Zipcode </th>
+                                                        <th scope="col">Action </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        this.props.addressDetailsList.data.map((addDetails, index) => {
+                                                            return (
+                                                                <tr key={index}>
+                                                                    <td> {addDetails.address} </td>
+                                                                    <td> {addDetails.state} </td>
+                                                                    <td> {addDetails.county} </td>
+                                                                    <td> {addDetails.zipcode} </td>
+                                                                    <td>
+                                                                        <Button onClick={this.editClickHandler.bind(this, addDetails)} color="warning" size="sm" type="button">
+                                                                            Edit</Button>
+                                                                        <Button onClick={this.deleteAddressHandler.bind(this, addDetails.id)} color="success" size="sm" type="button">
+                                                                            Delete</Button>
+                                                                    </td>
+                                                                </tr>
+                                                            )
+                                                        })
+                                                    }
+                                                </tbody>
+                                            </Table>
+                                            <CardFooter className="py-4">
+                                                <nav aria-label="...">
+                                                    <Pagination
+                                                        className="pagination justify-content-end mb-0"
+                                                        listClassName="justify-content-end mb-0"
+                                                    >
+                                                        <PaginationItem className="disabled">
+                                                            <PaginationLink
+                                                                href="#pablo"
+                                                                onClick={e => e.preventDefault()}
+                                                                tabIndex="-1"
+                                                            >
+                                                                <i className="fas fa-angle-left" />
+                                                                <span className="sr-only">Previous</span>
+                                                            </PaginationLink>
+                                                        </PaginationItem>
+                                                        <PaginationItem className="active">
+                                                            <PaginationLink
+                                                                href="#pablo"
+                                                                onClick={e => e.preventDefault()}
+                                                            >
+                                                                1
                                                     </PaginationLink>
-                                                    </PaginationItem>
-                                                    <PaginationItem>
-                                                        <PaginationLink
-                                                            href="#pablo"
-                                                            onClick={e => e.preventDefault()}
-                                                        >
-                                                            2 <span className="sr-only">(current)</span>
-                                                        </PaginationLink>
-                                                    </PaginationItem>
-                                                    <PaginationItem>
-                                                        <PaginationLink
-                                                            href="#pablo"
-                                                            onClick={e => e.preventDefault()}
-                                                        >
-                                                            3
+                                                        </PaginationItem>
+                                                        <PaginationItem>
+                                                            <PaginationLink
+                                                                href="#pablo"
+                                                                onClick={e => e.preventDefault()}
+                                                            >
+                                                                2 <span className="sr-only">(current)</span>
+                                                            </PaginationLink>
+                                                        </PaginationItem>
+                                                        <PaginationItem>
+                                                            <PaginationLink
+                                                                href="#pablo"
+                                                                onClick={e => e.preventDefault()}
+                                                            >
+                                                                3
                                                     </PaginationLink>
-                                                    </PaginationItem>
-                                                    <PaginationItem>
-                                                        <PaginationLink
-                                                            href="#pablo"
-                                                            onClick={e => e.preventDefault()}
-                                                        >
-                                                            <i className="fas fa-angle-right" />
-                                                            <span className="sr-only">Next</span>
-                                                        </PaginationLink>
-                                                    </PaginationItem>
-                                                </Pagination>
-                                            </nav>
-                                        </CardFooter>
-                                    </Card>
-                                </div>
-                            </Row>
+                                                        </PaginationItem>
+                                                        <PaginationItem>
+                                                            <PaginationLink
+                                                                href="#pablo"
+                                                                onClick={e => e.preventDefault()}
+                                                            >
+                                                                <i className="fas fa-angle-right" />
+                                                                <span className="sr-only">Next</span>
+                                                            </PaginationLink>
+                                                        </PaginationItem>
+                                                    </Pagination>
+                                                </nav>
+                                            </CardFooter>
+                                        </Card>
+                                    </div>
+                                </Row>
                         </Container>
                     </div>
-                </div>
+                    </div>
             </>
-        )
-    }
-}
+                )
+            }
+        }
 
-const mapStateToProps = ({ insertAddress, addressDetailsList, deleteAddress }) => {
+const mapStateToProps = ({insertAddress, addressDetailsList, deleteAddress}) => {
     return {
-        insertAddress,
-        addressDetailsList,
-        deleteAddress
-    }
-}
+                    insertAddress,
+                    addressDetailsList,
+                    deleteAddress
+                }
+                }
 const mapDispatchToProps = dispatch => {
     return {
-        onInsertAddressClick: (objAddress) => dispatch(actionCreators.insertAddress(objAddress)),
+                    onInsertAddressClick: (objAddress) => dispatch(actionCreators.insertAddress(objAddress)),
         onGetAddressList: () => dispatch(actionCreators.getAddressList()),
         onDeleteAddress: (delId) => dispatch(actionCreators.deleteAddressId(delId)),
     }
 }
-
+ 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressDetails);
