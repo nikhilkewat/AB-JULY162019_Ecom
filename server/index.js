@@ -30,7 +30,9 @@ app.use(function(req, res, next) {
 // app.use("/api",login);
 
 var category = require("./Routes/category");
+var userdetails = require("./Routes/userDetails");
 app.use("/api",category);
+app.use("/api", userdetails);
 
 var address = require("./Routes/AddressDetails");
 app.use("/api",address);
