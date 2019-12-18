@@ -1,10 +1,25 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './types';
 import axios from 'axios';
 
 export const insertAddress = objAddress => dispatch => {
+    //console.log(objAddress);
     axios({
         method: "POST",
         url: "http://localhost:5002/api/insertaddress",
+        data: objAddress
+    }).then(res => {
+        dispatch({
+            type: actionTypes.GET_ADDRESS_LIST,
+            result: res.data
+        });
+    });
+}
+
+export const updateAddress = objAddress => dispatch => {
+    //console.log(objAddress);
+    axios({
+        method: "POST",
+        url: "http://localhost:5002/api/updateaddress",
         data: objAddress
     }).then(res => {
         dispatch({
