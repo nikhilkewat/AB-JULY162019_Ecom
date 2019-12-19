@@ -8,8 +8,6 @@ import Admin from "./Admin/component";
 import './App.css';
 import 'react-notifications-component/dist/theme.css'
 
-
-
 function App() {
   return (
     <div className="App">
