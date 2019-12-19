@@ -9,5 +9,7 @@ export default combineReducers({
     category,
     categoryList,
     userDetails,
-    userDetailsList
+    userDetailsList,
+    address,
+    addressDetailsList
 })

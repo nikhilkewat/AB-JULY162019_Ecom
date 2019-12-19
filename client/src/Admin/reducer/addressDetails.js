@@ -33,12 +33,3 @@ export const addressDetailsList = (state = initialState, action) => {
     }
     return state;
 }
-export const deleteAddress = (state = initialState, action) => {
-    if (action.type === actionTypes.DELETE_ADDRESS) {
-        return {
-            ...state,
-            ...action.result
-        }
-    }
-    return state;
-}
