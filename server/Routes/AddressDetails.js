@@ -49,7 +49,7 @@ address.post("/updateaddress", function (req, res) {
         data: []
     };
     const query = mysqlescape(
-        ("Update AddressDetails set userDetailId=:userDetailId,address=:address,state=:state,county=:county,zipcode=:zipcode where id=:addressId;" + getQuery),
+        ("Update AddressDetails set userDetailId=:userDetailId,address=:address,state=:state,county=:county,zipcode=:zipcode,modifiedDateTime=now() where id=:addressId;" + getQuery),
         {
             userDetailId: req.body.userDetailId,
             address: req.body.address,
@@ -80,7 +80,6 @@ address.get("/getaddresslist", function (req, res) {
 });
 
 address.post("/deleteaddress", function (req, res) {
-    //console.log(req.body.id);
     var obj = {
         error: false,
         success: true,
