@@ -30,7 +30,7 @@ export const category = (state = initialstate, action) => {
 };
 
 export const categoryList = (state = initialstate, action) => {
-  console.log(action);
+  //console.log(action);
   switch (action.type) {
     case actionTypes.GET_CATEGORY_LIST:
       return {

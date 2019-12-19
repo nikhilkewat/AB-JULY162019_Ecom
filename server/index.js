@@ -34,7 +34,7 @@ var userdetails = require("./Routes/userDetails");
 app.use("/api",category);
 app.use("/api", userdetails);
 
-var address = require("./Routes/AddressDetails");
+const address = require("./Routes/AddressDetails");
 app.use("/api",address);
 
 var server = app.listen(5002, function() {
