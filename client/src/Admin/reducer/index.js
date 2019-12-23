@@ -4,6 +4,8 @@ import {userDetails, userDetailsList} from "./UserDetails";
 //import {newreducers} from "./newfile"
 import { address } from './addressDetails';
 import { addressDetailsList } from './addressDetails';
+//product category
+import {productcategory,productcategoryList,productList} from "./ProductCategory";
 
 export default combineReducers({
     category,
@@ -11,5 +13,8 @@ export default combineReducers({
     userDetails,
     userDetailsList,
     address,
-    addressDetailsList
+    addressDetailsList,
+    productcategory,
+    productcategoryList,
+    productList
 })

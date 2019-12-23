@@ -36,6 +36,11 @@ app.use("/api", userdetails);
 
 const address = require("./Routes/AddressDetails");
 app.use("/api",address);
+//Product and Product Category
+var product=require("./Routes/product");
+var productcategory = require("./Routes/productcategory");
+app.use("/api",productcategory);
+app.use("/api",product);
 
 var server = app.listen(5002, function() {
  console.log("Server Started")  ;

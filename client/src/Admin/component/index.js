@@ -10,6 +10,8 @@ import Sidebar from "../../Common/Sidebar/Sidebar";
 import Category from "../component/Category";
 import Header from "../../Common/Headers/Header";
 import AddressDetails from '../component/AddressDetails';
+//Product Category Component
+import Productcategory from "../component/Productcategory";
 
 let routes = [
   {
@@ -24,6 +26,13 @@ let routes = [
     name: "AddressDetails",
     icon: "ni ni-tv-2 text-primary",
     component: AddressDetails,
+    layout: "/admin"
+  },
+  {
+    path: "/productcategory",
+    name: "Product Category",
+    icon: "ni ni-tv-2 text-primary",
+    component: Productcategory,
     layout: "/admin"
   }
 ];
@@ -67,10 +76,11 @@ class Admin extends React.Component {
           <Switch>
             <Route path="/admin/category" component={Category}></Route>
             <Route path="/admin/addressDetails" component={AddressDetails} />
+            <Route path="/admin/productcategory" component={Productcategory}></Route>
           </Switch>
-          
+
           <Container fluid>
-            
+
             {/* <AdminFooter /> */}
           </Container>
         </div>
