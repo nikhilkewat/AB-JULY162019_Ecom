@@ -29,11 +29,18 @@ app.use(function(req, res, next) {
 // var login = require("./Routes/Login");
 // app.use("/api",login);
 
-const category = require("./Routes/category");
+var category = require("./Routes/category");
+var userdetails = require("./Routes/userDetails");
 app.use("/api",category);
+app.use("/api", userdetails);
 
 const address = require("./Routes/AddressDetails");
 app.use("/api",address);
+//Product and Product Category
+var product=require("./Routes/product");
+var productcategory = require("./Routes/productcategory");
+app.use("/api",productcategory);
+app.use("/api",product);
 
 var server = app.listen(5002, function() {
  console.log("Server Started")  ;

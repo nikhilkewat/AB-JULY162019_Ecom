@@ -2,7 +2,6 @@ import * as actionTypes from './types';
 import axios from 'axios';
 
 export const insertAddress = objAddress => dispatch => {
-    //console.log(objAddress);
     axios({
         method: "POST",
         url: "http://localhost:5002/api/insertaddress",
@@ -16,7 +15,6 @@ export const insertAddress = objAddress => dispatch => {
 }
 
 export const updateAddress = objAddress => dispatch => {
-    //console.log(objAddress);
     axios({
         method: "POST",
         url: "http://localhost:5002/api/updateaddress",

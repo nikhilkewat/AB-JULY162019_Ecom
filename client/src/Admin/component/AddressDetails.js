@@ -40,7 +40,6 @@ class AddressDetails extends Component {
     }
 
     onSelectedIndexChanged(option) {
-        //console.log(option);
         this.setState({
             state: option.label,
             selectedState: option
@@ -48,7 +47,6 @@ class AddressDetails extends Component {
     }
 
     async addressSaveHandler() {
-        //console.log(this.state);
         if (this.state.address === "") {
             store.addNotification({
                 title: "Warning!",
