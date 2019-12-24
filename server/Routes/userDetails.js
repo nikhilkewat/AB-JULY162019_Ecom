@@ -3,41 +3,83 @@ var databaseConnection = require("../Database/database");
 var mysqlescape = require("mysql-named-params-escape");
 const userDetails = express();
 
-userDetails.post("/insertuserdetail", function(req, res) {
-  var obj = {
-    error: false,
-    success: true,
-    data: []
-  };
+const getQuery = "Select * From UserDetails;";
+userDetails.post("/insertuserdetail", function (req, res) {
+    var obj = {
+        error: false,
+        success: true,
+        data: []
+    };
 
-  var query = mysqlescape(
-    "Insert into UserDetails (Category,ParentCategoryId) Values (:Category,:ParentCategoryId)",
-    {
-      Category: req.body.category,
-      ParentCategoryId: req.body.parentcategoryid
-    }
-  );
-  databaseConnection.connection.query(query, (err, res1, rows) => {
-    obj.body = res1;
-    res.status(201).json(obj);
-  });
+    var query = mysqlescape(
+        ("Insert into UserDetails  (firstName,middleName,lastName,contactNo,contactEmail,role) values (:firstName,:middleName,:lastName,:contactNo,:contactEmail,:role);" + getQuery),
+        {
+            firstName: req.body.firstName,
+            middleName: req.body.middleName,
+            lastName: req.body.lastName,
+            contactNo: req.body.contactNo,
+            contactEmail: req.body.contactEmail,
+            role: req.body.selectedValue.value
+        });
+    databaseConnection.connection.query(query, (err, res1, rows) => {
+        obj.data = res1[1];
+        res.status(201).json(obj);
+    })
 });
 
-userDetails.get("/getuserdetails", function(req, res) {
+userDetails.post("/updateuserdetail", function (req, res) {
     var obj = {
-      error: false,
-      success: true,
-      data: []
+        error: false,
+        success: true,
+        data: []
     };
-  
+    const query = mysqlescape(
+        ("Update UserDetails set firstName=:firstName,middleName=:middleName,lastName=:lastName,contactNo=:contactNo,contactEmail=:contactEmail,role=:role,modifiedDateTime=now() where id=:id;" + getQuery),
+        {
+          firstName: req.body.firstName,
+          middleName: req.body.middleName,
+          lastName: req.body.lastName,
+          contactNo: req.body.contactNo,
+          contactEmail: req.body.contactEmail,
+          role: req.body.role
+        });
+    databaseConnection.connection.query(query, (err, res1, rows) => {
+        obj.data = res1[1];
+        res.status(201).json(obj);
+    })
+});
+
+userDetails.get("/getuserdetaillist", function (req, res) {
+    var obj = {
+        error: false,
+        success: true,
+        data: []
+    };
     var query = mysqlescape(
-      "Select c.*,c.Id as value,c.Category as label,c1.Category as ParentCategory From Category c left Join Category c1 on c.ParentCategoryId=c1.Id"
+        "Select * From UserDetails"
     );
     databaseConnection.connection.query(query, (err, res1, rows) => {
-      obj.data = res1;
-      res.status(201).json(obj);
-    });
-  });
+        obj.data = res1;
+        res.status(201).json(obj);
+    })
+});
+
+userDetails.post("/deleteuserdetail", function (req, res) {
+    var obj = {
+        error: false,
+        success: true,
+        data: []
+    };
+    var query = mysqlescape(
+        ("Delete From UserDetails where id=:id ;" + getQuery),
+        {
+            id: req.body.id
+        });
+    databaseConnection.connection.query(query, (err, res1, rows) => {
+        obj.data = res1[1];
+        res.status(201).json(obj);
+    })
+});
 
 
 module.exports = userDetails;
