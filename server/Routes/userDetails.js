@@ -49,7 +49,7 @@ userDetails.post("/updateuserdetail", function (req, res) {
     })
 });
 
-userDetails.get("/getuserdetaillist", function (req, res) {
+userDetails.get("/getuserdetail", function (req, res) {
     var obj = {
         error: false,
         success: true,

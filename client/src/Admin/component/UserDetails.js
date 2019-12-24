@@ -181,7 +181,7 @@ class UserDetails extends Component {
       firstName: "",
       middleName: "",
       lastName: "",
-      contactNo: 0,
+      contactNo: "",
       contactEmail: "",
       role: "",
       iseditmode: false,
