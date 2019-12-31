@@ -2,7 +2,10 @@ var express = require("express");
 var databaseConnection = require("../Database/database");
 var mysqlescape = require("mysql-named-params-escape");
 const login = express();
-
+//Auth
+var jwt = require("jsonwebtoken");
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr("secret_cryptr_key");
 
 
 login.post("/login", function(req, res) {
@@ -21,7 +24,18 @@ login.post("/login", function(req, res) {
   })
   databaseConnection.connection.query(query,(err,res1,rows)=>{
 
-        obj.body = res1;
+        obj.data = res1;
+        let token = jwt.sign(
+          {
+            ...res1
+          },
+          "jwt_token_secret_abjuly",
+          {
+            expiresIn: "1h" // expires in 12 hours
+          }
+        );
+        token=cryptr.encrypt(token);
+        obj.token=token;
         res.status(201).json(obj);
   })
 });
