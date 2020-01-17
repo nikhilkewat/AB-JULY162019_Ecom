@@ -25,7 +25,7 @@ import {
   productcategoryList,
   productList
 } from "./Admin/reducer/ProductCategory";
-import adminreducer from "./Admin/reducer"
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const s = {clientreducer}

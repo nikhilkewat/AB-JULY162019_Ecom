@@ -30,7 +30,7 @@ export const fetchUser = objUserDetails => async dispatch => {
             try {
               localStorage.setItem("token", res.data.token);
               localStorage.setItem("IsLoggedIn", true);
-              
+              axios.defaults.headers.common["token"] = res.data.token;
               SetAuthorizationToken(res.data.token);
               auth.logOut = false;
               auth.redirectToLogin = false;

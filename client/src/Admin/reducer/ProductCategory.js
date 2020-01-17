@@ -58,7 +58,7 @@ export const productList = (state = initialstate, action) => {
 
 //get Category List for drop down
 export const categoryList = (state = initialstate, action) => {
-  console.log(action);
+  console.log(" PC",action);
   switch (action.type) {
     case actionTypes.GET_CATEGORY_LIST:
       return {
