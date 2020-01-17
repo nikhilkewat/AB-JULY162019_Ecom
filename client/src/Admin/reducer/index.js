@@ -5,23 +5,19 @@ import { userDetails, userDetailsList } from "./UserDetails";
 import { address } from "./addressDetails";
 import { addressDetailsList } from "./addressDetails";
 //product category
-import {
-  productcategory,
-  productcategoryList,
-  productList
-} from "./ProductCategory";
-
-
+import {productcategory,productcategoryList,productList} from "./ProductCategory";
+//Login
+import {auth} from "../../Login/reducer";
 
 export default combineReducers({
-  
-  category,
-  categoryList,
-  userDetails,
-  userDetailsList,
-  address,
-  addressDetailsList,
-  productcategory,
-  productcategoryList,
-  productList
-});
+    category,
+    categoryList,
+    userDetails,
+    userDetailsList,
+    address,
+    addressDetailsList,
+    productcategory,
+    productcategoryList,
+    productList,
+    auth
+})

@@ -1,7 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
-import * as actions from "./Authaction";
 import { Redirect } from "react-router-dom";
+import * as actions from "./actions";
+import {connect} from "react-redux";
+
 // reactstrap components
 import {
   Button,
@@ -15,32 +16,25 @@ import {
   InputGroup,
   Col
 } from "reactstrap";
+//import { connection } from "../../../server/Database/database";
 
 class Login extends React.Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {
-      redirectToApplication:false
-    };
+    this.state={};
   }
-
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  onClick = async () => {
-    await this.props.fetchUser(this.state);
-    console.log("CLICK",this.props);
-    this.setState({redirectToApplication:this.props.auth.redirectToApplication})
-  };
+  onChange=(e)=>{
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
+  onClick=()=>{
+    this.props.fetchUser(this.state);
+  }
   render() {
-  console.log("PROPS",this.props);
-    if (
-     
-      this.state.redirectToApplication===true
-    ) {
-      console.log("in");
+    if(this.props.auth.redirectToApplication){
       return <Redirect to="/admin" />;
     }
-
     return (
       <>
         <Col lg="5" md="7">
@@ -57,12 +51,7 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input
-                      placeholder="Username"
-                      type="email"
-                      name="username"
-                      onChange={this.onChange}
-                    />
+                    <Input placeholder="Email" name="username" onChange={this.onChange} type="email" />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -72,12 +61,7 @@ class Login extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input
-                      placeholder="Password"
-                      type="password"
-                      onChange={this.onChange}
-                      name="password"
-                    />
+                    <Input placeholder="Password" name="password" onChange={this.onChange} type="password" />
                   </InputGroup>
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
@@ -94,12 +78,7 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button
-                    className="my-4"
-                    color="primary"
-                    type="button"
-                    onClick={this.onClick}
-                  >
+                  <Button className="my-4" color="primary" onClick={this.onClick} type="button">
                     Sign in
                   </Button>
                 </div>
@@ -111,16 +90,14 @@ class Login extends React.Component {
     );
   }
 }
-
-const mapdispatchtoprops = dispatch => {
+const mapdispatchtoprops=dispatch=>{
   return {
     fetchUser: objUser => dispatch(actions.fetchUser(objUser))
-  };
-};
-
+  }
+}
 const mapStatetoProps = ({ auth }) => {
   return {
     auth
   };
 };
-export default connect(mapStatetoProps, mapdispatchtoprops)(Login);
+export default connect(mapStatetoProps,mapdispatchtoprops)(Login);

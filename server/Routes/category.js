@@ -1,7 +1,7 @@
 var express = require("express");
 var databaseConnection = require("../Database/database");
 var mysqlescape = require("mysql-named-params-escape");
-var checktoken = require("./CheckToken");
+var checkToken=require('./checktoken');
 const category = express();
 
 const getQuery =
@@ -42,7 +42,7 @@ category.post("/updatecategory", function(req, res) {
       ParentCategoryId: req.body.parentcategoryid
     }
   );
-  
+
   databaseConnection.connection.query(query, (err, res1, rows) => {
     obj.data = res1[1];
     res.status(201).json(obj);
@@ -50,25 +50,24 @@ category.post("/updatecategory", function(req, res) {
 });
 
 category.post("/deletecategory", function(req, res) {
-  
+
   var obj = {
     error: false,
     success: true,
     data: []
   };
-  
+
   var query = mysqlescape(("Delete from Category where id=:id;" + getQuery), {
     id: req.body.id
   });
-  
-  databaseConnection.connection.query(query, (err, results, rows) => {    
+
+  databaseConnection.connection.query(query, (err, results, rows) => {
     obj.data = results[1];
     res.status(201).json(obj);
   });
 });
 
-category.get("/getcategory", function(req, res) {
-  
+category.get("/getcategory",checkToken, function(req, res) {
   var obj = {
     error: false,
     success: true,

@@ -15,35 +15,27 @@ login.post("/login", function(req, res) {
     body: req.body
   };
 
-  var query =
-    "select * from User where username='" +
-    req.body.username +
-    "' and password='" +
-    req.body.password +
-    "'";
-  var query1 = mysqlescape(
-    "select * From User where username=:pusername and password=:ppassword",
-    {
-      pusername: req.body.UserName,
-      ppassword: req.body.Password
-    }
-  );
-  databaseConnection.connection.query(query1, (err, res1, rows) => {
-    console.log(res1);
-    let token = jwt.sign(
-      {
-        ...res1
-      },
-      "jwt_token_secret_abjuly",
-      {
-        expiresIn: "1h" // expires in 12 hours
-      }
-    );
-    token = cryptr.encrypt(token);
-    obj.data = res1;
-    obj.token = token;
-    res.status(201).json(obj);
-  });
+  var query = "select * from User where username='"+req.body.username+"' and password='"+req.body.password+"'";
+  var query1= mysqlescape("select * From User where username=:pusername and password=:ppassword",{
+    pusername: req.body.username,
+    ppassword:req.body.password
+  })
+  databaseConnection.connection.query(query,(err,res1,rows)=>{
+
+        obj.data = res1;
+        let token = jwt.sign(
+          {
+            ...res1
+          },
+          "jwt_token_secret_abjuly",
+          {
+            expiresIn: "1h" // expires in 12 hours
+          }
+        );
+        token=cryptr.encrypt(token);
+        obj.token=token;
+        res.status(201).json(obj);
+  })
 });
 
 login.get("/getData", function(req, res) {
