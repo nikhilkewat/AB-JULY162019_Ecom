@@ -27,7 +27,7 @@ class Category extends Component {
     };
   }
 
-  async componentDidMount() {
+  async componentWMount() {
     await this.props.getcategorylist();
   }
 

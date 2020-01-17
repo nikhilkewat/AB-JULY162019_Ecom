@@ -18,7 +18,7 @@ class UserDetails extends Component {
 
   async componentDidMount() {
     await this.props.getuserdetailslist();
-    console.log(this.props.userDetailsList);
+    
     
   }
 
@@ -33,8 +33,8 @@ class UserDetails extends Component {
     await this.props.getuserdetailslist();
   };
   render() {
-     console.log(this.props.getuserdetailslist);
-    const {data}= this.props.userDetailsList;
+     
+    //const {data}= this.props.userDetailsList;
     return (
       <div className="container">
         <div className="row">

@@ -2,6 +2,7 @@ import * as actionTypes from "./types";
 import axios from "axios";
 
 const dispatch_categoryList = data => {
+  console.log("categoryList",actionTypes.GET_CATEGORY_LIST)
   return {
     type: actionTypes.GET_CATEGORY_LIST,
     result: data.data
@@ -61,11 +62,22 @@ export const deleteCategory = objCategory => dispatch => {
   });
 };
 
-export const getCategoryList = () => dispatch => {
-  axios({
+export const getCategoryList = () =>async dispatch => {
+  console.log("In Category list");
+  try{
+ await axios({
     method: "GET",
     url: "http://localhost:5002/api/getcategory"
   }).then(res => {
-    dispatch(dispatch_categoryList(res));
+    console.log("category",res);
+    dispatch({
+      type: actionTypes.GET_CATEGORY_LIST,
+      result: res.data
+    });
+   // dispatch(dispatch_categoryList(res));
   });
+}
+catch(err){
+  console.log(err);
+}
 };

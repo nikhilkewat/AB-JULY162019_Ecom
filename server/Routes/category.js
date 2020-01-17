@@ -1,6 +1,7 @@
 var express = require("express");
 var databaseConnection = require("../Database/database");
 var mysqlescape = require("mysql-named-params-escape");
+var checktoken = require("./CheckToken");
 const category = express();
 
 const getQuery =
@@ -67,6 +68,7 @@ category.post("/deletecategory", function(req, res) {
 });
 
 category.get("/getcategory", function(req, res) {
+  
   var obj = {
     error: false,
     success: true,
@@ -75,8 +77,14 @@ category.get("/getcategory", function(req, res) {
 
   var query = mysqlescape(getQuery);
   databaseConnection.connection.query(query, (err, res1, rows) => {
+    if(err){
+      
+      res.status(400).json(err);
+    }
+    else{
+      console.log(res1);
     obj.data = res1;
-    res.status(201).json(obj);
+    res.status(201).json(obj);}
   });
 });
 

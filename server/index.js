@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors')
 
 const app = express();
 
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-
+app.use(cors());
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -17,7 +18,7 @@ app.use(function(req, res, next) {
   // Request headers you wish to allow
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
+    "X-Requested-With,content-type,Authorization"
   );
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
@@ -41,6 +42,9 @@ var product=require("./Routes/product");
 var productcategory = require("./Routes/productcategory");
 app.use("/api",productcategory);
 app.use("/api",product);
+
+var login = require("./Routes/Login");
+app.use("/api",login);
 
 var server = app.listen(5002, function() {
  console.log("Server Started")  ;
