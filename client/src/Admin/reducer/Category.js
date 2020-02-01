@@ -5,6 +5,7 @@ const initialstate = {
 };
 
 export const category = (state = initialstate, action) => {
+  console.log("CAT REDUCER");
   switch (action.type) {
     case actionTypes.INSERT_CATEGORY:
       console.log("InReducer:", action);
@@ -30,7 +31,7 @@ export const category = (state = initialstate, action) => {
 };
 
 export const categoryList = (state = initialstate, action) => {
-  console.log(action);
+  console.log("CATEGORY LIST",action);
   switch (action.type) {
     case actionTypes.GET_CATEGORY_LIST:
       return {

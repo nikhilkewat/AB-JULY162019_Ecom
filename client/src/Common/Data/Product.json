@@ -1,0 +1,44 @@
+[
+    {
+        "id":1,
+        "name":"Product 1",
+        "price":200,
+        "currency":"USD",
+        "image":"images/01.jpg"
+    },
+    {
+        "id":2,
+        "name":"Product 2",
+        "price":100,
+        "currency":"USD",
+        "image":"images/02.jpg"
+    },
+    {
+        "id":3,
+        "name":"Product 3",
+        "price":150,
+        "currency":"USD",
+        "image":"images/03.jpg"
+    },
+    {
+        "id":4,
+        "name":"Product 4",
+        "price":400,
+        "currency":"USD",
+        "image":"images/04.jpg"
+    },
+    {
+        "id":5,
+        "name":"Product 5",
+        "price":199,
+        "currency":"USD",
+        "image":"images/05.jpg"
+    },
+    {
+        "id":6,
+        "name":"Product 6",
+        "price":999,
+        "currency":"USD",
+        "image":"images/06.jpg"
+    }
+]

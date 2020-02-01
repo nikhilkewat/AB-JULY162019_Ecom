@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
 import * as actions from "../action/category";
-import { store } from 'react-notifications-component';
+import * as a1 from "../action/productcategory";
+import { store } from "react-notifications-component";
 
 import {
   Button,
@@ -53,7 +54,7 @@ class Category extends Component {
       return;
     }
     if (!this.state.iseditmode) {
-      await this.props.insertcategory(this.state)
+      await this.props.insertcategory(this.state);
     } else {
       this.props.updatecategory(this.state);
       this.setState(prev => ({
@@ -76,9 +77,9 @@ class Category extends Component {
       selectedId: obj.id
     }));
   };
-  onDeleteClick =async obj => {
+  onDeleteClick = async obj => {
     this.props.deletecategory(obj);
-   this.props.getcategorylist();
+    this.props.getcategorylist();
     store.addNotification({
       title: "Delete Success!",
       message: "Record Deleted successfully",
@@ -257,7 +258,7 @@ const mapdispatchtoprops = dispatch => {
       dispatch(actions.updateCategory(objcategory)),
     deletecategory: objcategory =>
       dispatch(actions.deleteCategory(objcategory)),
-    getcategorylist: () => dispatch(actions.getCategoryList())
+    getcategorylist: () => dispatch(actions.getCategoryList_1())
   };
 };
 
